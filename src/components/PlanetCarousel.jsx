@@ -214,6 +214,7 @@ const PlanetCarousel = () => {
   const [isLoading, setIsLoading] = useState(true);
   const totalPlanets = 8;
   const navigate = useNavigate();
+  const autoRotationIntervalRef = useRef(null);
 
   const planets = [
     { name: 'Mercury' },
@@ -230,15 +231,28 @@ const PlanetCarousel = () => {
     if (e.key === 'ArrowRight') {
       setActivePlanet((prev) => (prev + 1) % 8);
       setShowRadialMenu(true);
+      resetAutoRotation();
     } else if (e.key === 'ArrowLeft') {
       setActivePlanet((prev) => (prev - 1 + 8) % 8);
       setShowRadialMenu(true);
+      resetAutoRotation();
     }
+  };
+
+  const resetAutoRotation = () => {
+    clearInterval(autoRotationIntervalRef.current);
+    autoRotationIntervalRef.current = setInterval(() => {
+      setActivePlanet((prev) => (prev + 1) % 8);
+    }, 10000);
   };
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    resetAutoRotation();
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      clearInterval(autoRotationIntervalRef.current);
+      };
   }, []);
 
   useEffect(() => {
@@ -262,7 +276,7 @@ const PlanetCarousel = () => {
   }
 
   return (
-    <section className="min-h-screen w-full flex flex-col relative overflow-hidden" id="home">
+    <section className="min-h-screen w-full flex flex-col relative overflow-hidden bg-black" id="home">
       <Navbar currentPlanet={activePlanet} totalPlanets={totalPlanets} />
       <div className="w-full h-full absolute inset-0">
         <Canvas camera={{ position: [0, 0, 50], fov: 75 }} shadows>

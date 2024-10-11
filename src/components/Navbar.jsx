@@ -14,7 +14,7 @@ const Navbar = ({ currentPlanet, totalPlanets }) => {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex justify-between items-center py-2">
           {/* Logo */}
-          <a href="/" className="text-white text-base md:text-lg tracking-wide font-light">
+          <a href="/" className="text-white text-base md:text-lg tracking-wide font-light h-10">
             Pinguland-IberoPue
           </a>
 
@@ -29,19 +29,19 @@ const Navbar = ({ currentPlanet, totalPlanets }) => {
             </Link>
             <Link 
               to="/team" 
-              className="text-neutral-300 hover:text-white transition-colors duration-300 font-light"
+              className="text-neutral-300 hover:text-white transition-colors duration-300 font-light relative group"
               onClick={closeMenu}
             >
               Team
-              <span className="block w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full absolute bottom-[-4px] left-0" />
+              <span className="block w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full absolute bottom-[10px] left-0"></span>
             </Link>
             <Link 
               to="/about_Team" 
-              className="text-neutral-300 hover:text-white transition-colors duration-300 font-light"
+              className="text-neutral-300 hover:text-white transition-colors duration-300 font-light relative group"
               onClick={closeMenu}
             >
               About
-              <span className="block w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full absolute bottom-[-4px] left-0" > 
+              <span className="block w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full absolute bottom-[10px] left-0" > 
                 
               </span>
             </Link>
@@ -88,7 +88,7 @@ const Navbar = ({ currentPlanet, totalPlanets }) => {
       )}
 
       {/* Centered Progress Bar */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 bottom-4 w-full max-w-sm px-6">
+      <div className="absolute left-1/2 transform -translate-x-1/2 bottom-11 w-full max-w-sm px-6">
         <div className="bg-neutral-700 h-1 w-full rounded-full">
           <div
             className="bg-white h-1 rounded-full transition-all duration-300"
